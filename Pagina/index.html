@@ -1,21 +1,105 @@
 <!DOCTYPE html>
-<html lang="es-Lat">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width,inital-scale=1-0">  
-        <title>Omedic</title>
-        <meta name="Autores " content="Seo y Sebastian D.">
-        <meta name="contenido" content="Productos y tratamientos para la piel">
-        <link rel="icon" href="Logo.png" type="image/x-icon">
-    </head>
-    <body>
-        <a href="https://www.facebook.com/profile.php?id=61567313286427" target = "_blank"> 
-            <img src = "Redes/Facebook.png" alt = "Facebook" height = "30px" width = "30px">
-        </a>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Omedic</title>
+    <meta name="Autores" content="Seo y Sebastian D.">
+    <meta name="contenido" content="Productos y tratamientos para la piel">
+    <link rel="icon" href="Logo.png" type="image/x-icon">
+    <meta charset="UTF-8">
 
-        <a href="https://api.whatsapp.com/send?phone=%2B51903346536&context=AffUe05PUbgdSW31TwYTivgbpJfBigMkWJjv2lsum3Z3iN-kZk_DZR-lo40TphugcFVNsE4XeupUeQwaTvM-pJn0twu0TpUcvWrW_qirXS2WfrBZ8rqY80HxbxZxISLF1K0zRqvrhP59C1tVaz4HxCre_g&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwY2xjawLbpJVleHRuA2FlbQIxMABicmlkETFaRlVmTGFVeEZVTW9oamFnAR7_KW2ipT5gmZ3LeugAsuEIDUa2DV_yvkjN1T7HYBYrojMWozChvC0gC-BzZQ_aem_v5VxTSqdqTyh39bqvrfoxA" target = "_blank"> 
-            <img src = "Redes/WhatsApp.png" alt = "WhatsApp" height = "30px" width = "30px">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #232f3e;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .seccion {
+            display: none;
+            padding: 20px;
+        }
+
+        .activa {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+    <div class="navbar">
+        <a onclick="mostrar('inicio')">Inicio</a>
+        <a onclick="mostrar('productos')">Nuestros Productos</a>
+        <a onclick="mostrar('tratamientos')">Nuestros Tratamientos</a>
+        <a onclick="mostrar('piel')">Tipo de Piel</a>
+        <a onclick="mostrar('cita')">Programa tu Cita</a>
+        <a onclick="mostrar('contacto')">Contáctanos</a>
+    </div>
+
+    <!-- Secciones -->
+    <div id="inicio" class="seccion activa">
+        <h1>Bienvenido a Omedic</h1>
+        <p>Descubre lo mejor en cuidado de la piel.</p>
+    </div>
+
+    <div id="productos" class="seccion">
+        <h1>Nuestros Productos</h1>
+        <p>Explora nuestra línea de productos dermatológicos.</p>
+    </div>
+
+    <div id="tratamientos" class="seccion">
+        <h1>Nuestros Tratamientos</h1>
+        <p>Conoce los tratamientos que ofrecemos según tu tipo de piel.</p>
+    </div>
+
+    <div id="piel" class="seccion">
+        <h1>Tipo de Piel</h1>
+        <p>Identifica tu tipo de piel y aprende a cuidarla mejor.</p>
+    </div>
+
+    <div id="cita" class="seccion">
+        <h1>Programa tu Cita</h1>
+        <p>Reserva una cita con nuestros especialistas en cuidado de la piel.</p>
+    </div>
+
+    <div id="contacto" class="seccion">
+        <h1>Contáctanos</h1>
+        <a href="https://www.facebook.com/profile.php?id=61567313286427" target="_blank"> 
+            <img src="Redes/Facebook.png" alt="Facebook" height="30px" width="30px">
         </a>
-    </body>
+        <a href="https://api.whatsapp.com/send?phone=+51903346536" target="_blank"> 
+            <img src="Redes/WhatsApp.png" alt="WhatsApp" height="30px" width="30px">
+        </a>
+    </div>
+
+    <script>
+        function mostrar(id) {
+            const secciones = document.querySelectorAll('.seccion');
+            secciones.forEach(sec => sec.classList.remove('activa'));
+            document.getElementById(id).classList.add('activa');
+        }
+    </script>
+
+</body>
 </html>

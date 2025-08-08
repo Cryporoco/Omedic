@@ -1,3 +1,0 @@
-# Omedic
-
-wa

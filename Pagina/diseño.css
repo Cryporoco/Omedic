@@ -1,0 +1,30 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+#productos, #carrito {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+.producto {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+#carrito ul {
+  list-style: none;
+  padding: 0;
+}
+#carrito li {
+  padding: 5px 0;
+}
+#vaciar {
+  background-color: #f44336;
+  color: white;
+  border: none;
+}

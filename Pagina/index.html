@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tienda Omedic</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="diseño.css" />
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -79,5 +80,16 @@
 
     cargarProductos();
   </script>
+  <h2>Productos</h2>
+<div id="productos"></div>
+
+<h2>Carrito</h2>
+<div id="carrito">
+  <ul></ul>
+  <p>Total: $<span id="total">0</span></p>
+  <button id="vaciar">Vaciar Carrito</button>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

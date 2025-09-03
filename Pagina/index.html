@@ -17,12 +17,38 @@
     <nav>
       <button onclick="window.location.href='register.html'">Registrarse</button>
       <button onclick="window.location.href='login.html'">Iniciar sesión</button>
+      <div class="carrito-icono" onclick="toggleCarrito()">
+        🛒
+        <span class="carrito-contador" id="carrito-contador">0</span>
+      </div>
     </nav>
   </header>
 
   <main>
     <section id="productos" class="productos"></section>
   </main>
+
+  <div class="overlay" id="overlay" onclick="toggleCarrito()"></div>
+  
+  <div class="carrito-container" id="carrito">
+    <div class="carrito-header">
+      <h2>Tu Carrito</h2>
+      <button onclick="toggleCarrito()">✕</button>
+    </div>
+    
+    <div class="carrito-items" id="carrito-items">
+      <!-- Los productos del carrito se insertarán aquí -->
+    </div>
+    
+    <div class="carrito-total" id="carrito-total">
+      Total: $0.00
+    </div>
+    
+    <div class="carrito-botones">
+      <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar Carrito</button>
+      <button class="btn-pagar" onclick="procesarPago()">Procesar Pago</button>
+    </div>
+  </div>
 
   <footer>
     <p>&copy; 2025 Omedic - Todos los derechos reservados</p>

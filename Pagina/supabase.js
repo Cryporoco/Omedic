@@ -2,6 +2,7 @@
 const SUPABASE_URL = "https://rdwxbhkovlpmlyscostp.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkd3hiaGtvdmxwbWx5c2Nvc3RwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY2MTcwNzIsImV4cCI6MjA3MjE5MzA3Mn0.qj6EUZ91HiYPIESjBQkpEy-VG5VQacqyPXOg_phbJz0";
 
+// Inicializar Supabase
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Variable para almacenar el carrito
@@ -86,38 +87,44 @@ function actualizarCarritoUI() {
   
   // Actualizar contador
   const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
-  contador.textContent = totalItems;
+  if (contador) {
+    contador.textContent = totalItems;
+  }
   
   // Actualizar items
-  itemsContainer.innerHTML = '';
-  
-  if (carrito.length === 0) {
-    itemsContainer.innerHTML = '<p>Tu carrito está vacío</p>';
-  } else {
-    carrito.forEach(item => {
-      const itemElement = document.createElement('div');
-      itemElement.className = 'carrito-item';
-      itemElement.innerHTML = `
-        <img src="${item.imagen_url}" alt="${item.name}">
-        <div class="carrito-item-info">
-          <div class="carrito-item-titulo">${item.name}</div>
-          <div class="carrito-item-precio">$${(item.price * item.cantidad).toFixed(2)}</div>
-          <div class="carrito-item-cantidad">
-            <button onclick="actualizarCantidad(${item.id}, ${item.cantidad - 1})">-</button>
-            <input type="number" value="${item.cantidad}" min="1" 
-              onchange="actualizarCantidad(${item.id}, parseInt(this.value))">
-            <button onclick="actualizarCantidad(${item.id}, ${item.cantidad + 1})">+</button>
-            <button style="margin-left: 10px; color: red; background: none; border: none; cursor: pointer;" 
-              onclick="eliminarDelCarrito(${item.id})">🗑️</button>
+  if (itemsContainer) {
+    itemsContainer.innerHTML = '';
+    
+    if (carrito.length === 0) {
+      itemsContainer.innerHTML = '<p>Tu carrito está vacío</p>';
+    } else {
+      carrito.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.className = 'carrito-item';
+        itemElement.innerHTML = `
+          <img src="${item.imagen_url}" alt="${item.name}">
+          <div class="carrito-item-info">
+            <div class="carrito-item-titulo">${item.name}</div>
+            <div class="carrito-item-precio">$${(item.price * item.cantidad).toFixed(2)}</div>
+            <div class="carrito-item-cantidad">
+              <button onclick="actualizarCantidad(${item.id}, ${item.cantidad - 1})">-</button>
+              <input type="number" value="${item.cantidad}" min="1" 
+                onchange="actualizarCantidad(${item.id}, parseInt(this.value))">
+              <button onclick="actualizarCantidad(${item.id}, ${item.cantidad + 1})">+</button>
+              <button style="margin-left: 10px; color: red; background: none; border: none; cursor: pointer;" 
+                onclick="eliminarDelCarrito(${item.id})">🗑️</button>
+            </div>
           </div>
-        </div>
-      `;
-      itemsContainer.appendChild(itemElement);
-    });
+        `;
+        itemsContainer.appendChild(itemElement);
+      });
+    }
   }
   
   // Actualizar total
-  totalContainer.textContent = `Total: $${calcularTotal().toFixed(2)}`;
+  if (totalContainer) {
+    totalContainer.textContent = `Total: $${calcularTotal().toFixed(2)}`;
+  }
 }
 
 // Alternar visibilidad del carrito
@@ -125,12 +132,18 @@ function toggleCarrito() {
   const carrito = document.getElementById('carrito');
   const overlay = document.getElementById('overlay');
   
-  carrito.classList.toggle('abierto');
-  overlay.classList.toggle('activo');
+  if (carrito && overlay) {
+    carrito.classList.toggle('abierto');
+    overlay.classList.toggle('activo');
+  }
 }
 
 // Mostrar notificación
 function mostrarNotificacion(mensaje) {
+  // Eliminar notificaciones existentes
+  const notificacionesExistentes = document.querySelectorAll('.notificacion');
+  notificacionesExistentes.forEach(notif => notif.remove());
+  
   // Crear elemento de notificación
   const notificacion = document.createElement('div');
   notificacion.className = 'notificacion';
@@ -140,7 +153,9 @@ function mostrarNotificacion(mensaje) {
   
   // Eliminar después de 3 segundos
   setTimeout(() => {
-    document.body.removeChild(notificacion);
+    if (document.body.contains(notificacion)) {
+      document.body.removeChild(notificacion);
+    }
   }, 3000);
 }
 
@@ -162,14 +177,17 @@ function procesarPago() {
 
 // Cargar productos desde Supabase
 async function cargarProductos() {
+  const contenedor = document.getElementById("productos");
+  if (!contenedor) return;
+  
   const { data, error } = await supabase.from("products").select("*");
 
   if (error) {
     console.error("❌ Error cargando productos:", error);
+    contenedor.innerHTML = "<p>Error al cargar los productos. Por favor, intenta nuevamente.</p>";
     return;
   }
 
-  const contenedor = document.getElementById("productos");
   contenedor.innerHTML = "";
 
   data.forEach(p => {
@@ -185,8 +203,46 @@ async function cargarProductos() {
   });
 }
 
+// Verificar autenticación del usuario
+async function verificarAutenticacion() {
+  const { data: { session } } = await supabase.auth.getSession();
+  return session !== null;
+}
+
+// Cerrar sesión
+async function cerrarSesion() {
+  const { error } = await supabase.auth.signOut();
+  if (!error) {
+    window.location.href = 'index.html';
+  }
+}
+
 // Inicializar
 document.addEventListener("DOMContentLoaded", () => {
-  cargarProductos();
   cargarCarrito();
+  
+  // Solo cargar productos si estamos en una página que los necesita
+  if (document.getElementById("productos")) {
+    cargarProductos();
+  }
+  
+  // Configurar botones de auth si existen
+  const btnCerrarSesion = document.getElementById('cerrar-sesion');
+  if (btnCerrarSesion) {
+    btnCerrarSesion.addEventListener('click', cerrarSesion);
+  }
+  
+  // Verificar autenticación y actualizar UI
+  verificarAutenticacion().then(estaAutenticado => {
+    const authButtons = document.querySelector('.auth-buttons');
+    if (authButtons && estaAutenticado) {
+      authButtons.innerHTML = `
+        <button onclick="cerrarSesion()">Cerrar sesión</button>
+        <div class="carrito-icono" onclick="toggleCarrito()">
+          🛒
+          <span class="carrito-contador" id="carrito-contador">0</span>
+        </div>
+      `;
+    }
+  });
 });

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos - Omedic</title>
+  <link rel="stylesheet" href="../diseño.css">
+  <link rel="stylesheet" href="productos.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <h1>🛍️ Omedic - Productos</h1>
+      <nav>
+        <a href="../index.html">Inicio</a>
+        <a href="productos.html" class="active">Productos</a>
+        <a href="../servicios/servicios.html">Servicios</a>
+        <a href="../contacto/contacto.html">Contactanos</a>
+        <a href="../quienes-somos/quienes-somos.html">Quienes somos</a> 
+        <div class="auth-buttons">
+          <button onclick="window.location.href='../auth/register.html'">Registrarse</button>
+          <button onclick="window.location.href='../auth/login.html'">Iniciar sesión</button>
+          <div class="carrito-icono" onclick="toggleCarrito()">
+            🛒
+            <span class="carrito-contador" id="carrito-contador">0</span>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="productos-header">
+      <h2>Nuestros Productos</h2>
+      <p>Descubre nuestra completa línea de productos dermatológicos para el cuidado de tu piel</p>
+    </section>
+
+    <section class="filtros">
+      <div class="filtros-container">
+        <select id="categoria-filtro">
+          <option value="todos">Todas las categorías</option>
+          <option value="limpieza">Limpieza facial</option>
+          <option value="hidratacion">Hidratación</option>
+          <option value="proteccion">Protección solar</option>
+          <option value="tratamiento">Tratamientos especializados</option>
+        </select>
+        
+        <select id="ordenar-por">
+          <option value="nombre">Ordenar por nombre</option>
+          <option value="precio-asc">Precio: menor a mayor</option>
+          <option value="precio-desc">Precio: mayor a menor</option>
+        </select>
+        
+        <input type="text" id="buscar-producto" placeholder="Buscar productos...">
+      </div>
+    </section>
+
+    <section class="productos" id="productos">
+      <!-- Los productos se cargarán dinámicamente -->
+    </section>
+  </main>
+
+  <div class="overlay" id="overlay" onclick="toggleCarrito()"></div>
+  
+  <div class="carrito-container" id="carrito">
+    <div class="carrito-header">
+      <h2>Tu Carrito</h2>
+      <button onclick="toggleCarrito()">✕</button>
+    </div>
+    
+    <div class="carrito-items" id="carrito-items">
+      <!-- Los productos del carrito se insertarán aquí -->
+    </div>
+    
+    <div class="carrito-total" id="carrito-total">
+      Total: $0.00
+    </div>
+    
+    <div class="carrito-botones">
+      <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar Carrito</button>
+      <button class="btn-pagar" onclick="procesarPago()">Procesar Pago</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Omedic - Todos los derechos reservados</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../supabase.js"></script>
+  <script src="productos.js"></script>
+</body>
+</html>

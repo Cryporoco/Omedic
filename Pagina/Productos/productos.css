@@ -1,0 +1,66 @@
+/* Estilos específicos para la página de productos */
+
+.productos-header {
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.productos-header h2 {
+  color: #0d47a1;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.productos-header p {
+  font-size: 1.2rem;
+  color: #555;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.filtros {
+  background-color: #f8f9fa;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.filtros-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.filtros-container select,
+.filtros-container input {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.filtros-container input {
+  min-width: 250px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .filtros-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .filtros-container select,
+  .filtros-container input {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .productos-header h2 {
+    font-size: 2rem;
+  }
+}

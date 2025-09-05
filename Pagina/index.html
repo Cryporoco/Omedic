@@ -8,29 +8,58 @@
   <meta name="description" content="Productos dermatológicos y tratamientos para el cuidado de la piel">
   <link rel="icon" href="Imagenes/Logo.png" type="image/x-icon">
   <link rel="stylesheet" href="diseño.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="supabase.js" defer></script>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
   <header>
-    <h1>🛍️ Bienvenido a Omedic</h1>
-    <a href="#" onclick="scrollToSection('Inicio')">Inicio</a>
-    <a href="#" onclick="scrollToSection('Productos')">Productos</a>
-    <a href="#" onclick="scrollToSection('Servicios')">Servicios</a>
-    <a href="#" onclick="scrollToSection('Contacto')">Contactanos</a>
-    <a href="#" onclick="scrollToSection('Somos')">Quienes somos</a> 
-    <nav>
-      <button onclick="window.location.href='register.html'">Registrarse</button>
-      <button onclick="window.location.href='login.html'">Iniciar sesión</button>
-      <div class="carrito-icono" onclick="toggleCarrito()">
-        🛒
-        <span class="carrito-contador" id="carrito-contador">0</span>
-      </div>
-    </nav>
+    <div class="header-container">
+      <h1>🛍️ Bienvenido a Omedic</h1>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="productos/productos.html">Productos</a>
+        <a href="servicios/servicios.html">Servicios</a>
+        <a href="contacto/contacto.html">Contactanos</a>
+        <a href="quienes-somos/quienes-somos.html">Quienes somos</a> 
+        <div class="auth-buttons">
+          <button onclick="window.location.href='register.html'">Registrarse</button>
+          <button onclick="window.location.href='login.html'">Iniciar sesión</button>
+          <div class="carrito-icono" onclick="toggleCarrito()">
+            🛒
+            <span class="carrito-contador" id="carrito-contador">0</span>
+          </div>
+        </div>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <section id="productos" class="productos"></section>
+    <section class="hero">
+      <div class="hero-content">
+        <h2>Tu piel merece lo mejor</h2>
+        <p>Descubre nuestra línea de productos dermatológicos y tratamientos especializados para el cuidado de tu piel. Calidad, ciencia y bienestar en un solo lugar.</p>
+        <button class="btn-hero" onclick="window.location.href='Productos/productos.html'">Ver Productos</button>
+      </div>
+    </section>
+
+    <section class="secciones-inicio">
+      <div class="tarjeta-seccion">
+        <h3>Productos</h3>
+        <p>Descubre nuestra completa línea de productos dermatológicos para el cuidado de tu piel.</p>
+        <a href="Productos/productos.html" class="btn-seccion">Explorar Productos</a>
+      </div>
+      
+      <div class="tarjeta-seccion">
+        <h3>Servicios</h3>
+        <p>Conoce nuestros servicios especializados de consulta y tratamientos dermatológicos.</p>
+        <a href="Servicios/servicios.html" class="btn-seccion">Ver Servicios</a>
+      </div>
+      
+      <div class="tarjeta-seccion">
+        <h3>Quiénes Somos</h3>
+        <p>Conoce más sobre nuestra misión, visión y el equipo detrás de Omedic.</p>
+        <a href="Somos/somos.html" class="btn-seccion">Conócenos</a>
+      </div>
+    </section>
   </main>
 
   <div class="overlay" id="overlay" onclick="toggleCarrito()"></div>
@@ -58,5 +87,9 @@
   <footer>
     <p>&copy; 2025 Omedic - Todos los derechos reservados</p>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>

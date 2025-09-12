@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OMEDIC - Contacto</title>
+
+  <!-- Si prefieres usar tu diseño en diseño.css, descomenta la línea siguiente y elimina el <style> interno más abajo -->
+  <!-- <link rel="stylesheet" href="diseño.css"> -->
+
+  <style>
+    /* Estilo mínimo para que se vea bien inmediatamente */
+    :root{
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --accent:#0b84ff;
+      --text:#222;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:var(--text);
+      display:flex;
+      min-height:100vh;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:12px;
+      box-shadow:0 8px 30px rgba(12,20,40,0.08);
+      padding:28px;
+      width:100%;
+      max-width:760px;
+      text-align:center;
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      justify-content:center;
+      margin-bottom:18px;
+    }
+    .logo{
+      width:72px;
+      height:72px;
+      object-fit:contain;
+      border-radius:8px;
+      background:linear-gradient(180deg, #fff, #f3f7ff);
+      padding:6px;
+    }
+    h1{font-size:20px;margin:0}
+    p.sub{color:#666;margin-top:6px;margin-bottom:18px}
+
+    .socials{
+      display:flex;
+      gap:18px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .socials a{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      padding:10px 14px;
+      border-radius:10px;
+      background:linear-gradient(180deg,#fbfcff,#f8fbff);
+      border:1px solid rgba(12,20,40,0.04);
+      min-width:220px;
+      box-shadow:0 6px 18px rgba(12,20,40,0.04);
+      transition:transform .12s ease, box-shadow .12s ease;
+      color:var(--text);
+    }
+    .socials a:hover{ transform:translateY(-4px); box-shadow:0 10px 30px rgba(12,20,40,0.08); }
+    .socials img.icon{
+      width:36px;
+      height:36px;
+      object-fit:cover;
+      border-radius:6px;
+      background:white;
+      padding:4px;
+    }
+    .socials .label{
+      text-align:left;
+      font-weight:600;
+    }
+    .small{
+      display:block;
+      color:#666;
+      font-size:13px;
+      margin-top:10px;
+    }
+
+    /* responsive */
+    @media (max-width:480px){
+      .socials a{ min-width:unset; width:100%; justify-content:flex-start;}
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <header>
+      <img src="../Imagenes/Logo.png" alt="Logotipo OMEDIC" class="logo" />
+      <div>
+        <h1>OMEDIC</h1>
+        <p class="sub">Contáctanos en nuestras redes sociales</p>
+      </div>
+    </header>
+
+    <div class="socials" role="navigation" aria-label="Enlaces a redes sociales">
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/profile.php?id=61567313286427" target="_blank" rel="noopener noreferrer" aria-label="OMEDIC en Facebook">
+        <img class="icon" src="../Imagenes/Facebook.png" alt="Facebook icon" />
+        <span class="label">Facebook</span>
+      </a>
+
+      <!-- WhatsApp -->
+      <a href="https://api.whatsapp.com/send?phone=%2B51903346536&context=Afd6nWzm2OBg2xK1O0y_8z_2PeCsLeMfsPRG5FOAB2onHPhV8w__EgKOhEnkV2AVCO59T2VXcMTs4IpnXsbxamrFn3YpAGhcouFVtzXtTro16ohr3tdtsK1WbvuPZDUV2YiG22ZzngWr43BVMuzV59vVdQ&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwY2xjawMwVlRleHRuA2FlbQIxMABicmlkETE2bDlhTXJsQ0R3OWNaRlV0AR7P-g1wodooBRl0ozUXS_XTpEP_YT0449LBwfxlV6MgjPmYBiWWfQ3N0m-Jsg_aem_YU-M38tPi3JOiMHfh_xAPg" target="_blank" rel="noopener noreferrer" aria-label="Enviar mensaje por WhatsApp a OMEDIC">
+        <img class="icon" src="../Imagenes/WhatsApp.png" alt="WhatsApp icon" />
+        <span class="label">WhatsApp</span>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/omedic3/?igsh=MXMwM3ByNmNna3g4MQ%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="OMEDIC en Instagram">
+        <img class="icon" src="../Imagenes/insta.jpg" alt="Instagram icon" />
+        <span class="label">Instagram</span>
+      </a>
+    </div>
+
+    <p class="small">Nota: las imágenes de los iconos deben estar en la carpeta <code>Imagenes</code> (mismos nombres: <code>Facebook.png</code>, <code>WhatsApp.png</code>, <code>Insta.jpg</code>, <code>Logo.png</code>).</p>
+  </main>
+</body>
+</html>
